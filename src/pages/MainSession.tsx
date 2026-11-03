@@ -234,8 +234,15 @@ const MainSession: React.FC = () => {
       messagesUsed: newMessagesUsed,
     });
 
-    // Check if we should show the insight generation button (every 5 user messages)
-    if (newUserMessagesSinceLastInsight % 5 === 0 && newUserMessagesSinceLastInsight > 0) {
+    // Free sessions only get 4 messages, so offer the wisdom card by message 3
+    // (or every 5 messages for Pro / longer sessions).
+    const hitFreeCardMoment =
+      profile?.is_pro !== true && newMessagesUsed >= Math.min(3, sessionLimits.maxMessages);
+    const hitProCardMoment =
+      profile?.is_pro === true &&
+      newUserMessagesSinceLastInsight % 5 === 0 &&
+      newUserMessagesSinceLastInsight > 0;
+    if (hitFreeCardMoment || hitProCardMoment) {
       setShowGenerateInsightButton(true);
     }
 
@@ -1001,7 +1008,7 @@ const MainSession: React.FC = () => {
                   <p className={`text-sm mb-3 ${
                     sessionType === 'morning' ? 'text-gray-700' : 'text-white'
                   }`}>
-                    You've shared 5 messages! Ready to capture an insight from our conversation?
+                    Ready to turn this conversation into a wisdom card — a small lesson to keep?
                   </p>
                   <button
                     onClick={handleGenerateInsightClick}
@@ -1111,14 +1118,15 @@ const MainSession: React.FC = () => {
         </div>
       </div>
 
-      {/* Privacy Notice - Bottom of page */}
-      <div className="fixed bottom-2 left-1/2 transform -translate-x-1/2 z-[5]">
-        <p className={`text-[10px] sm:text-xs whitespace-nowrap ${
+      {/* Privacy + safety notice */}
+      <div className="fixed bottom-2 left-1/2 transform -translate-x-1/2 z-[5] px-3 max-w-xl w-full">
+        <p className={`text-[10px] sm:text-xs text-center leading-snug ${
           sessionType === 'morning' 
             ? 'text-gray-900' 
             : 'text-white'
         }`}>
-          🔒 All data stored locally & privately on your device
+          🔒 Stored on your device · Komorebi is a reflection companion, not therapy or medical care.
+          {' '}If you're in crisis, call/text <span className="font-semibold">988</span> (US) or visit 988lifeline.org.
         </p>
       </div>
     </div>

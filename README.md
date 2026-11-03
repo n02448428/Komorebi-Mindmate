@@ -24,7 +24,7 @@ Komorebi MindMate is a personal AI wellness app built around the concept of *kom
 |---|---|
 | Frontend | React 18, TypeScript, Vite |
 | Backend / DB | Supabase (PostgreSQL + Auth + Realtime) |
-| AI | OpenAI API (conversational sessions + insight generation) |
+| AI | Google Gemini free tier via Supabase Edge Functions (`GEMINI_API_KEY`) |
 | Deployment | Netlify (441+ deployments, continuous delivery from GitHub) |
 | Styling | CSS Modules / custom styles |
 | State Management | React Context API |
@@ -33,7 +33,7 @@ Komorebi MindMate is a personal AI wellness app built around the concept of *kom
 
 ## Key Features
 
-- **AI Chat Sessions** — Open-ended therapeutic conversation powered by OpenAI
+- **AI Chat Sessions** — Supportive reflection conversations (not therapy) powered by Gemini free tier
 - **Chat Archive** — All sessions saved to Supabase and browsable by date
 - **Insights Gallery** — AI-generated summaries and reflections from your chat history
 - **All Insights View** — Aggregate view of emotional patterns over time
@@ -81,7 +81,7 @@ npm install
 
 # 3. Configure environment variables
 cp .env.example .env
-# Add your Supabase URL, anon key, and OpenAI API key
+# Add your Supabase URL, anon key. Set GEMINI_API_KEY in Supabase Edge Function secrets (not in Vite).
 
 # 4. Run the dev server
 npm run dev
@@ -91,7 +91,8 @@ npm run dev
 ```
 VITE_SUPABASE_URL=your_supabase_project_url
 VITE_SUPABASE_ANON_KEY=your_supabase_anon_key
-VITE_OPENAI_API_KEY=your_openai_api_key
+# Server-side only (Supabase Dashboard → Edge Functions → Secrets):
+# GEMINI_API_KEY=your_google_ai_studio_key
 ```
 
 ---

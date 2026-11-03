@@ -24,10 +24,15 @@ export const aiChatService = {
       })
 
       if (error) throw error
+      if (data?.error) {
+        throw new Error(data.details || data.error)
+      }
       return data
     } catch (error) {
       console.error('AI Chat Error:', error)
-      throw new Error('Failed to get AI response')
+      throw new Error(
+        error instanceof Error ? error.message : 'Failed to get AI response'
+      )
     }
   },
 
