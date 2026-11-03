@@ -1,8 +1,8 @@
 import { createClient } from '@supabase/supabase-js'
 
 // Using direct URLs for faster initialization and error prevention
-const supabaseUrl = import.meta.env.VITE_SUPABASE_URL || 'https://eeqpvvkxttsqyfunsibb.supabase.co'
-const supabaseAnonKey = import.meta.env.VITE_SUPABASE_ANON_KEY || 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImVlcXB2dmt4dHRzcXlmdW5zaWJiIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTA3ODQ0MjQsImV4cCI6MjA2NjM2MDQyNH0.3W25cdLQSgeQv4ekrZmAitia1aIjJQSorrcAAUVWJiI'
+const supabaseUrl = import.meta.env.VITE_SUPABASE_URL || 'https://yeyaavxzjwrhmtkobeyb.supabase.co'
+const supabaseAnonKey = import.meta.env.VITE_SUPABASE_ANON_KEY || 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InlleWFhdnh6andyaG10a29iZXliIiwicm9sZSI6ImFub24iLCJpYXQiOjE3OTM3NDEyMDMsImV4cCI6MjEwOTMxNzIwM30.VXQtUPUzoLPCwz_uycbHV1xRsH4QdJiEtS5qBKxmsAo'
 
 // Create Supabase client with better retries
 export const supabase = createClient(supabaseUrl, supabaseAnonKey, {
