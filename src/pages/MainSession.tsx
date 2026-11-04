@@ -576,7 +576,7 @@ const MainSession: React.FC = () => {
   // Show session limit reached only if user has completed BOTH sessions today (for non-Pro users)
   if (user && profile?.is_pro !== true && hasCompletedBothToday) {
     return (
-      <div className="h-screen relative overflow-hidden">
+      <div className="h-screen relative overflow-hidden min-w-0">
         {videoEnabled && (
           <NatureVideoBackground 
             ref={videoBackgroundRef}
@@ -635,7 +635,7 @@ const MainSession: React.FC = () => {
   // Show session expired message
   if (sessionStartTime && isSessionExpired) {
     return (
-      <div className="h-screen relative overflow-hidden">
+      <div className="h-screen relative overflow-hidden min-w-0">
         {videoEnabled && (
           <NatureVideoBackground 
             ref={videoBackgroundRef}
@@ -751,7 +751,7 @@ const MainSession: React.FC = () => {
   }
 
   return (
-    <div className="h-screen relative overflow-hidden flex flex-col">
+    <div className="h-screen relative overflow-hidden flex flex-col min-w-0">
       {videoEnabled && (
         <NatureVideoBackground 
           ref={videoBackgroundRef}
@@ -796,7 +796,7 @@ const MainSession: React.FC = () => {
         </AnimatePresence>
 
         {/* Right side - Controls Container (always positioned on the right) */}
-        <div className="absolute right-6 top-6 flex items-center gap-3">
+        <div className="absolute right-3 sm:right-6 top-4 sm:top-6 flex items-center gap-2 sm:gap-3 max-w-[calc(100%-1.5rem)] flex-wrap justify-end">
           {/* Animated Controls Panel */}
           <AnimatePresence>
             {showControls && (
@@ -950,7 +950,7 @@ const MainSession: React.FC = () => {
       </div>
 
       {/* Main Content */}
-      <div className="relative z-10 pt-24 pb-2 px-6 flex-1 flex flex-col min-h-0">
+      <div className="relative z-10 pt-24 pb-2 px-3 sm:px-6 flex-1 flex flex-col min-h-0 min-w-0 overflow-x-hidden">
         <div className="w-full flex-1 flex flex-col min-h-0">
           {/* Session Type Display */}
           <AnimatePresence>
@@ -1119,7 +1119,7 @@ const MainSession: React.FC = () => {
       </div>
 
       {/* Privacy + safety notice */}
-      <div className="fixed bottom-2 left-1/2 transform -translate-x-1/2 z-[5] px-3 max-w-xl w-full">
+      <div className="fixed bottom-2 left-1/2 transform -translate-x-1/2 z-[5] px-3 max-w-xl w-full pb-[env(safe-area-inset-bottom,0px)]">
         <p className={`text-[10px] sm:text-xs text-center leading-snug ${
           sessionType === 'morning' 
             ? 'text-gray-900' 

@@ -49,25 +49,25 @@ const AuthPage: React.FC = () => {
       />
       
       {/* Header */}
-      <div className="absolute top-0 left-0 right-0 z-10 p-6 flex justify-between items-center">
+      <div className="absolute top-0 left-0 right-0 z-10 p-4 sm:p-6 flex justify-between items-center gap-2 pt-[max(1rem,env(safe-area-inset-top))]">
         <button
           onClick={handleBack}
-          className={`flex items-center gap-2 px-4 py-2 rounded-xl backdrop-blur-sm border border-white/20 transition-all duration-200 ${
+          className={`flex items-center gap-2 px-3 sm:px-4 py-2 rounded-xl backdrop-blur-sm border border-white/20 transition-all duration-200 shrink-0 ${
             timeOfDay.period === 'morning'
               ? 'bg-white/20 hover:bg-white/30 text-gray-700'
               : 'bg-white/10 hover:bg-white/20 text-white'
           }`}
         >
           <ArrowLeft className="w-4 h-4" />
-          <span className="text-sm font-medium">Back to Chat</span>
+          <span className="text-sm font-medium hidden xs:inline sm:inline">Back</span>
         </button>
         
-        <div className="flex items-center gap-2">
-          <Sparkles className="w-8 h-8 text-amber-500" />
-          <span className="text-2xl font-bold text-gray-800">Komorebi</span>
+        <div className="flex items-center gap-2 min-w-0">
+          <Sparkles className="w-6 h-6 sm:w-8 sm:h-8 text-amber-500 shrink-0" />
+          <span className="text-lg sm:text-2xl font-bold text-gray-800 truncate">Komorebi</span>
         </div>
         
-        <div className="w-24" /> {/* Spacer */}
+        <div className="w-10 sm:w-16 shrink-0" /> {/* Spacer */}
       </div>
 
       {/* Main Content */}

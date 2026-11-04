@@ -186,7 +186,7 @@ const NatureVideoBackground = forwardRef<NatureVideoBackgroundRef, NatureVideoBa
     // Fallback gradient background
     console.log(`Using fallback gradient for scene: ${scene}`);
     return (
-      <div className={`absolute inset-0 bg-gradient-to-br ${gradientClass} ${className}`}>
+      <div className={`fixed inset-0 bg-gradient-to-br ${gradientClass} ${className}`} aria-hidden="true">
         <div className="absolute inset-0 bg-black/10" />
         {/* Subtle pattern for the fallback */}
         <div className="absolute inset-0 opacity-5">
@@ -198,7 +198,7 @@ const NatureVideoBackground = forwardRef<NatureVideoBackgroundRef, NatureVideoBa
   }
 
   return (
-    <div className={`absolute inset-0 ${className}`}>
+    <div className={`fixed inset-0 ${className}`} aria-hidden="true">
       {/* Video Background */}
       <video
         ref={videoRef}
