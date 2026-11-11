@@ -950,7 +950,10 @@ const MainSession: React.FC = () => {
       </div>
 
       {/* Main Content */}
-      <div className="relative z-10 pt-24 pb-2 px-3 sm:px-6 flex-1 flex flex-col min-h-0 min-w-0 overflow-x-hidden">
+      <div
+        className="relative z-10 pt-24 px-3 sm:px-6 flex-1 flex flex-col min-h-0 min-w-0 overflow-x-hidden"
+        style={{ paddingBottom: 'max(0.5rem, env(safe-area-inset-bottom, 0px))' }}
+      >
         <div className="w-full flex-1 flex flex-col min-h-0">
           {/* Session Type Display */}
           <AnimatePresence>

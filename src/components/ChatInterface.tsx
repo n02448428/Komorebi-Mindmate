@@ -27,10 +27,14 @@ const ChatInterface: React.FC<ChatInterfaceProps> = ({
 }) => {
   const [inputValue, setInputValue] = useState('');
   const messagesEndRef = useRef<HTMLDivElement>(null);
+  const messagesContainerRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLTextAreaElement>(null);
 
   const scrollToBottom = useCallback(() => {
-    messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
+    // Scroll the messages container directly (not scrollIntoView) so the
+    // page itself never scrolls — only the message list moves.
+    const el = messagesContainerRef.current;
+    if (el) el.scrollTo({ top: el.scrollHeight, behavior: 'smooth' });
   }, []);
 
   useEffect(() => {
@@ -75,13 +79,16 @@ const ChatInterface: React.FC<ChatInterfaceProps> = ({
   };
 
   return (
-    <div className={`flex flex-col w-full mx-auto ${
+    // Fill the flex column's remaining space exactly (no fixed vh calc):
+    // the page root is 100dvh overflow-hidden, so flex-1 min-h-0 keeps the
+    // composer on-screen on any viewport instead of overflowing below the fold.
+    <div className={`flex flex-col w-full mx-auto flex-1 min-h-0 ${
       isImmersive 
-        ? 'h-[calc(100vh-8rem)] max-w-full' 
-        : 'h-[calc(100vh-14rem)] max-w-full sm:max-w-xl md:max-w-3xl'
+        ? 'max-w-full' 
+        : 'max-w-full sm:max-w-xl md:max-w-3xl'
     }`}>
       {/* Chat Messages */}
-      <div className={`flex-1 min-h-0 overflow-y-auto space-y-3 md:space-y-4 backdrop-blur-md will-change-scroll bg-white/10 border border-white/20 ${
+      <div ref={messagesContainerRef} className={`flex-1 min-h-0 overflow-y-auto space-y-3 md:space-y-4 backdrop-blur-md will-change-scroll bg-white/10 border border-white/20 ${
         isImmersive 
           ? 'p-4 md:p-6 rounded-3xl' 
           : 'p-4 md:p-6 rounded-t-3xl'
