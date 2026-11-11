@@ -31,7 +31,7 @@ const MainSession: React.FC = () => {
     morningCompleted: false,
     eveningCompleted: false,
     messagesUsed: 0,
-    maxMessages: profile?.is_pro === true ? 999 : 4,
+    maxMessages: profile?.is_pro === true ? 999 : 10,
   });
 
   const timeOfDay = getTimeOfDay(profile?.name);
@@ -110,7 +110,7 @@ const MainSession: React.FC = () => {
           ...parsed,
           lastMorningSession: parsed.lastMorningSession ? new Date(parsed.lastMorningSession) : undefined,
           lastEveningSession: parsed.lastEveningSession ? new Date(parsed.lastEveningSession) : undefined,
-          maxMessages: profile?.is_pro === true ? 999 : 4,
+          maxMessages: profile?.is_pro === true ? 999 : 10,
         });
       }
     } else {
@@ -119,7 +119,7 @@ const MainSession: React.FC = () => {
         morningCompleted: false,
         eveningCompleted: false,
         messagesUsed: 0,
-        maxMessages: 4,
+        maxMessages: 10,
       });
     }
 
@@ -234,7 +234,7 @@ const MainSession: React.FC = () => {
       messagesUsed: newMessagesUsed,
     });
 
-    // Free sessions only get 4 messages, so offer the wisdom card by message 3
+    // Free sessions get 10 messages, so offer the wisdom card by message 3
     // (or every 5 messages for Pro / longer sessions).
     const hitFreeCardMoment =
       profile?.is_pro !== true && newMessagesUsed >= Math.min(3, sessionLimits.maxMessages);
@@ -997,7 +997,7 @@ const MainSession: React.FC = () => {
 
           {/* Insight Generation Button */}
           <AnimatePresence>
-            {showGenerateInsightButton && showControls && (
+            {showGenerateInsightButton && (
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
@@ -1032,7 +1032,7 @@ const MainSession: React.FC = () => {
 
           {/* Display Latest Insight Card */}
           <AnimatePresence>
-            {insightCard && showControls && (
+            {insightCard && (
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
